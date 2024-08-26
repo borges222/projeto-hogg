@@ -130,6 +130,13 @@
         .copy-btn:hover {
             background-color: #0056b3;
         }
+        .copy-message {
+            font-size: 14px;
+            color: #28a745;
+            text-align: center;
+            margin-top: 5px;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -141,19 +148,22 @@
             <div class="dropdown">
                 <button class="dropdown-btn" onclick="toggleDropdown()">Selecionar Opções</button>
                 <div class="dropdown-content">
-                    <label><input type="checkbox" value="MAPEAMENTO DE RETINA"> MAPEAMENTO DE RETINA</label>
-                    <label><input type="checkbox" value="PAQUIMETRIA"> PAQUIMETRIA</label>
-                    <label><input type="checkbox" value="OCT GLAUCOMA"> OCT GLAUCOMA</label>
-                    <label><input type="checkbox" value="OCT RETINA"> OCT RETINA</label>
-                    <label><input type="checkbox" value="RETINOGRAFIA"> RETINOGRAFIA</label>
-                    <label><input type="checkbox" value="BIOMETRIA"> BIOMETRIA</label>
-                    <label><input type="checkbox" value="MICROSCOPIA"> MICROSCOPIA</label>
-                    <label><input type="checkbox" value="CERATOSCOPIA"> CERATOSCOPIA</label>
-                    <label><input type="checkbox" value="ULTRASSONOGRAFIA"> ULTRASSONOGRAFIA</label>
+                    <label><input type="checkbox" value="consulta oftalmologica"> consulta oftalmologica</label>
+                    <label><input type="checkbox" value="mapeamento de retina"> mapeamento de retina</label>
+                    <label><input type="checkbox" value="paquimetria"> paquimetria</label>
+                    <label><input type="checkbox" value="oct glaucoma"> oct glaucoma</label>
+                    <label><input type="checkbox" value="oct retina"> oct retina</label>
+                    <label><input type="checkbox" value="retinografia"> retinografia</label>
+                    <label><input type="checkbox" value="biometria"> biometria</label>
+                    <label><input type="checkbox" value="microscopia"> microscopia</label>
+                    <label><input type="checkbox" value="ceratoscopia"> ceratoscopia</label>
+                    <label><input type="checkbox" value="ultrassonografia"> ultrassonografia</label>
                     <label><input type="checkbox" value="angiofluoresceinografia"> angiofluoresceinografia</label>
                     <label><input type="checkbox" value="consulta oftalmologica sesc"> consulta oftalmologica sesc</label>
-                    <label><input type="checkbox" value="consulta oftalmologica CENTRAL DA VISAO"> consulta oftalmologica CENTRAL DA VISAO</label>
-                    <label><input type="checkbox" value="consulta oftalmologica DR VIS"> consulta oftalmologica DR VIS</label>
+                    <label><input type="checkbox" value="consulta oftalmologica central da visao"> consulta oftalmologica central da visao</label>
+                    <label><input type="checkbox" value="consulta oftalmologica dr vis"> consulta oftalmologica dr vis</label>
+                    <label><input type="checkbox" value="tonometria"> tonometria</label>
+                    <label><input type="checkbox" value="gonioscopia"> gonioscopia</label>
                 </div>
             </div>
             <button onclick="adicionarOpcoes()">Adicionar Opções</button>
@@ -164,6 +174,7 @@
                 <textarea id="outputText" readonly></textarea>
             </div>
             <button class="copy-btn" onclick="copiarTexto()">Copiar Texto</button>
+            <p id="copyMessage" class="copy-message">Texto copiado!</p>
         </div>
     </div>
 
@@ -220,7 +231,12 @@
             outputText.select();
             outputText.setSelectionRange(0, 99999); // Para dispositivos móveis
             document.execCommand("copy");
-            alert("Texto copiado: " + outputText.value);
+
+            const copyMessage = document.getElementById('copyMessage');
+            copyMessage.style.display = 'block';
+            setTimeout(() => {
+                copyMessage.style.display = 'none';
+            }, 2000);
         }
     </script>
 </body>
